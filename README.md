@@ -50,6 +50,35 @@ All packages are restored automatically from NuGet on the first build, so an int
 - SQL Server Express (instance `.\SQLEXPRESS`) and SQL Server Management Studio (SSMS)
 - Microsoft Edge WebView2 Runtime (already included in Windows 11 and recent Windows 10)
 
+## Activate the Siticone UI free trial (one-time, about 2 minutes)
+
+MediCord's buttons, text boxes, dropdowns and cards come from the **Siticone UI** library. It is free to try for **30 days**, but each computer must be registered once. **Without this step the project still opens, but Visual Studio will show a licence warning and the controls may show a trial watermark or fail to render in the designer.**
+
+You only need to do this in Visual Studio (the designer), not every time you run the app.
+
+1. **Restore the NuGet packages.** Open `medicord_v1.sln`, right-click the solution and choose **Restore NuGet Packages**. Wait until it finishes. This downloads `Siticone.NetCore.UI`.
+2. **Open any form in the designer.** In Solution Explorer, double-click a form or screen (for example `LoginForm.cs`) so the design view with the **Toolbox** panel opens. If the Toolbox is hidden, go to _View → Toolbox_.
+3. **Find the licence tool.** Type `siticonelicense` in the Toolbox search box. You will see **MySiticoneLicenseSettings**.
+
+   ![Searching the Toolbox for siticonelicense](docs/images/siticone-1-toolbox.png)
+
+4. **Add it to the form.** Double-click **MySiticoneLicenseSettings** (or drag it onto the form). A small component called `mySiticoneLicenseSettings1` appears in the grey tray under the form. Click it once.
+5. **Turn on the licence window.** In the **Properties** panel (View → Properties Window), find **OpenLicenseSettings** and change it from `False` to `True`.
+
+   ![Setting OpenLicenseSettings to True](docs/images/siticone-2-properties.png)
+
+6. **Register for the free trial.** A **Design Time License** window opens. Click **Trial** in the left menu, enter your name and email, and follow the steps (an internet connection is needed). When it succeeds, the **Summary** page shows **License status: Active** and the days remaining.
+
+   ![Siticone licence summary showing Active (personal details hidden)](docs/images/siticone-3-license-window.png)
+
+7. **Remove the helper from the form.** Delete `mySiticoneLicenseSettings1` from the tray so you do not commit it by accident, then rebuild with **Ctrl + Shift + B**. If the form still shows the old state, close and reopen the designer tab.
+
+**Tips**
+
+- The trial lasts 30 days from activation. If it has expired, use a different email for a new trial, or use the library's Premium/Store options.
+- If the window does not open, make sure the form's design view is active, then toggle **OpenLicenseSettings** back to `False` and again to `True`.
+- If the build or designer fails right after restoring, close and reopen Visual Studio once, then rebuild.
+
 ## Setup
 
 1. **Create the database**
@@ -58,6 +87,7 @@ All packages are restored automatically from NuGet on the first build, so an int
 2. **Open the project**
    - Open `medicord_v1.sln` in Visual Studio.
    - Right-click the solution and choose **Restore NuGet Packages** (this also happens on build).
+   - Activate the Siticone free trial (see the section above).
 3. **Check the connection string**
    - It is in `App.config`. If your SQL Server instance has a different name, change `.\SQLEXPRESS` to match.
 4. Press **F5** to run.
@@ -101,10 +131,9 @@ medicord_v1/
 ├─ Screens/Desktop     Facility admin screens (appointments, settings, workers)
 ├─ Screens/Worker      Worker dialogs (assign / reassign doctor, work days)
 ├─ Services/           Database access and business rules
-├─ Helpers/            Theme, navigation, message boxes, shared UI helpers
-└─ Database/           MedicordV1.sql
+└─ Helpers/            Theme, navigation, message boxes, shared UI helpers
 ```
 
 ## Team
 
-Medicord
+Made for `OMC September 2026`
