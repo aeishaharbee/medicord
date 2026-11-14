@@ -1,0 +1,14 @@
+﻿global using System.Data;
+global using System.Configuration;
+global using System.Security.Cryptography;
+global using System.Drawing.Drawing2D;
+global using System.Drawing.Imaging;
+global using SiticoneNetCoreUI;
+global using Microsoft.Data.SqlClient;
+global using Microsoft.Web.WebView2.Core;
+global using medicord_v1.Data;
+global using medicord_v1.Models;
+global using medicord_v1.Services;
+global using medicord_v1.Helpers;
+global using medicord_v1.Forms;
+global using medicord_v1.Screens.Patient;
