@@ -31,6 +31,7 @@
             pnlContent = new SiticonePanel();
             pnlApp = new SiticonePanel();
             pnlPage = new SiticonePanel();
+            mySiticoneLicenseSettings1 = new MySiticoneLicenseSettings();
             pnlApp.SuspendLayout();
             SuspendLayout();
             // 
@@ -204,5 +205,6 @@
         private SiticonePanel pnlContent;
         private SiticonePanel pnlApp;
         private SiticonePanel pnlPage;
+        private MySiticoneLicenseSettings mySiticoneLicenseSettings1;
     }
 }

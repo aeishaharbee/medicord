@@ -27,12 +27,10 @@ namespace medicord_v1.Screens.Facility
             lblApptsPerSlot.ForeColor = Theme.Muted;
 
             openChips = new[] { btnMon, btnTue, btnWed, btnThu, btnFri, btnSat, btnSun };
-            string[] dn = { "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun" };
             for (int i = 0; i < 7; i++)
             {
-                openChips[i].Text = dn[i];
                 Theme.Day(openChips[i]);
-                openChips[i].IsToggled = data.OpenDays.Contains(i);  
+                openChips[i].IsToggled = data.OpenDays.Contains(i+1);  
             }
 
             // refill when coming back from step 4
@@ -90,7 +88,7 @@ namespace medicord_v1.Screens.Facility
             if (minutes > (close - open).TotalMinutes)
             { Msg.Show("One slot is longer than your opening hours."); return; }
 
-            var openDays = Enumerable.Range(0, 7).Where(i => openChips[i].IsToggled).ToList();
+            var openDays = Enumerable.Range(0, 7).Where(i => openChips[i].IsToggled).Select(i=>i+1).ToList();
             if (openDays.Count == 0) { Msg.Show("Choose at least one open day."); return; }
 
             data.OpenTime = open; data.CloseTime = close;

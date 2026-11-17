@@ -58,8 +58,8 @@ namespace medicord_v1.Services
         //health worker 
         public static DataRow GetWorkerProfile() => Database.GetTable(
             @"SELECT w.FullName, w.MedicalRole, w.Nationality, w.IdType, w.IdNumber, w.Phone, u.Email, f.FacilityName,
-                 ISNULL(STUFF((SELECT ', ' + CASE d.DayOfWeek WHEN 1 THEN 'Mon' WHEN 2 THEN 'Tue' WHEN 3 THEN 'Wed'
-                                    WHEN 4 THEN 'Thu' WHEN 5 THEN 'Fri' WHEN 6 THEN 'Sat' ELSE 'Sun' END
+                 ISNULL(STUFF((SELECT ', ' + CASE d.DayOfWeek WHEN 0 THEN 'Mon' WHEN 1 THEN 'Tue' WHEN 2 THEN 'Wed'
+                                    WHEN 3 THEN 'Thu' WHEN 4 THEN 'Fri' WHEN 5 THEN 'Sat' ELSE 'Sun' END
                                FROM WorkerWorkDays d WHERE d.WorkerID = w.WorkerID ORDER BY d.DayOfWeek
                                FOR XML PATH('')), 1, 2, ''), '-') AS WorkingDays
           FROM HealthWorkers w

@@ -76,7 +76,7 @@ namespace medicord_v1.Screens.Desktop
             rdoWalkInYes.Checked = walk; rdoWalkInNo.Checked = !walk;
 
             var open = PortalService.GetOpenDays();
-            for (int i = 0; i < 7; i++) openChips[i].IsToggled = open.Contains(i);
+            for (int i = 0; i < 7; i++) openChips[i].IsToggled = open.Contains(i+1);
             LoadClosures();
         }
 
@@ -107,7 +107,7 @@ namespace medicord_v1.Screens.Desktop
             if (minutes > (close - open).TotalMinutes)
             { Msg.Show("One slot is longer than your opening hours."); return; }
 
-            var openDays = Enumerable.Range(0, 7).Where(i => openChips[i].IsToggled).ToList();
+            var openDays = Enumerable.Range(0, 7).Where(i => openChips[i].IsToggled).Select(i=>i+1).ToList();
             if (openDays.Count == 0) { Msg.Show("Choose at least one open day."); return; }
 
             var d = new FacilityRegData
